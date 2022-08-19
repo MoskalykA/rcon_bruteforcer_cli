@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 tokio = { version = "1.20.1", features = ["full"] }
-rcon_bruteforcer = { path = "../rcon_bruteforcer" }
+rcon_bruteforcer = { git = "https://github.com/MoskalykA/rcon_bruteforcer.git" }
 
 [dependencies.clap]
 version = "2.33.0"

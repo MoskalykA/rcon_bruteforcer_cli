@@ -601,6 +601,7 @@ dependencies = [
 [[package]]
 name = "rcon_bruteforcer"
 version = "0.1.2"
+source = "git+https://github.com/MoskalykA/rcon_bruteforcer.git#694f39cf2b60a02801d2438995526e60231bbae7"
 dependencies = [
  "bruteforce",
  "console",
