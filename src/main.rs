@@ -1,38 +1,43 @@
-extern crate clap;
-use clap::{Arg, App};
-
+use clap::{arg, command};
+use env_logger::Builder;
+use log::LevelFilter;
 use rcon_bruteforcer::start_process;
 
 #[tokio::main]
 async fn main() {
-    let matches = App::new("RCON Bruteforcer")
-        .version("0.1.1")
-        .author("CCBlueX")
-        .about("Allows you to bruteforce RCON server.")
-        .arg(Arg::with_name("host")
-            .short("h")
-            .long("host")
-            .value_name("HOST")
-            .help("Set the target host (127.0.0.1:25575)")
-            .index(1)
-            .required(true))
-        .arg(Arg::with_name("charset")
-            .short("s")
-            .long("charset")
-            .value_name("CHARSET")
-            .help("Specify the password charset")
-            .default_value("ABCDEFGHIJKLMNOPQRSTUVWXAZabcdefghijklmnopqrstuvwxyz123456789"))
-        .arg(Arg::with_name("concurrents")
-            .short("c")
-            .long("concurrents")
-            .value_name("CONCURRENTS")
-            .help("How many concurrent connections")
-            .default_value("10"))
+    Builder::new().filter_level(LevelFilter::Info).init();
+
+    let matches = command!()
+        .version("0.2.0")
+        .author("CCBlueX & MoskalykA")
+        .about("Allows you to bruteforce RCON server")
+        .arg(
+            arg!(
+                --host <String> "Set the target host"
+            )
+            .required(true),
+        )
+        .arg(
+            arg!(
+                --charset <String> "Specify the password charset"
+            )
+            .default_value("ABCDEFGHIJKLMNOPQRSTUVWXAZabcdefghijklmnopqrstuvwxyz123456789"),
+        )
+        .arg(
+            arg!(
+                --concurrents <String> "How many concurrent connections"
+            )
+            .default_value("10"),
+        )
         .get_matches();
 
-    let server = matches.value_of("host").unwrap();
-    let concurrents = matches.value_of("concurrents").unwrap().parse::<usize>().unwrap();
-    let string_charset = matches.value_of("charset").unwrap();
+    let host = matches.get_one::<String>("host").unwrap();
+    let concurrents = matches
+        .get_one::<String>("concurrents")
+        .unwrap()
+        .parse()
+        .unwrap();
 
-    start_process(server, concurrents, string_charset).await;
+    let charset = matches.get_one::<String>("charset").unwrap();
+    start_process(host, concurrents, charset).await
 }
