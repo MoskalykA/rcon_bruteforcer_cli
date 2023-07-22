@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install stable
+      - name: Install nightly
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
@@ -29,7 +29,7 @@ jobs:
           type: "zip"
           filename: "ubuntu.zip"
           directory: "target/release"
-          path: "rt"
+          path: "rcon_bruteforcer_cli"
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
@@ -43,7 +43,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install stable
+      - name: Install nightly
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
@@ -61,7 +61,7 @@ jobs:
           type: "zip"
           filename: "windows.zip"
           directory: "target/release"
-          path: "rt.exe"
+          path: "rcon_bruteforcer_cli.exe"
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
@@ -75,7 +75,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install stable
+      - name: Install nightly
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
@@ -93,7 +93,7 @@ jobs:
           type: "zip"
           filename: "macos.zip"
           directory: "target/release"
-          path: "rt"
+          path: "rcon_bruteforcer_cli"
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
