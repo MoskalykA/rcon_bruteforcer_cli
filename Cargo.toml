@@ -1,6 +1,6 @@
 [package]
 name = "rcon_bruteforcer_cli"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Kawaii Neko Lolis <marco@ccbluex.net>", "MoskalykA <vivelafrance1224@gmail.com>"]
 edition = "2021"
 

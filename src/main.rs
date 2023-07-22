@@ -8,7 +8,7 @@ async fn main() {
     Builder::new().filter_level(LevelFilter::Info).init();
 
     let matches = command!()
-        .version("0.2.0")
+        .version("0.2.1")
         .author("CCBlueX & MoskalykA")
         .about("Allows you to bruteforce RCON server")
         .arg(
